@@ -1,4 +1,0 @@
-NestedMap
-=========
-
-**TODO: Add description**
