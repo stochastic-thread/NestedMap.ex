@@ -24,5 +24,13 @@ defmodule NestedMap do
   def inspect(agent) do
     Agent.get agent, fn x -> x end
   end
+
+  def combinator(agent, x_all) do
+    x_all |> Enum.map fn(x) -> 
+      index = (Enum.find_index x_all, fn(y) -> y == x end)
+      (Enum.split x_all, index) |> Tuple.to_list |> hd |> Enum.map fn(n) -> NestedMap.insert(agent, x, n) end
+    end
+    agent
+  end
 end
 
